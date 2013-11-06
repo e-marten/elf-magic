@@ -51,7 +51,7 @@ class Install {
 					`last_modified` INT( 25 ) NOT NULL ,
 					`url` MEDIUMTEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 					`type` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-					`mid` INT( 20 ) NOT NULL ,
+					`mode` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 					`parameters` LONGTEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 					`status` INT( 20 ) NOT NULL DEFAULT '200'
 					) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT = 'url-routing';",
