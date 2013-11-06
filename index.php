@@ -1,9 +1,48 @@
-i am dev<?php
-### i am dev
+<?php
+
 
 	include("./framework/fw.inc.php");
 	echo "<pre>".print_r($_EF,true)."</pre>";
 	exit;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/*  EXAMPLE DATA */
 	$requested_url=$_SERVER["SERVER_NAME"]."".$_SERVER["REQUEST_URI"]; #test.fw.www-nerd.de/";	
 	$i="1";
