@@ -1,0 +1,26 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+
+RewriteCond %{HTTP_HOST} ^www\.sandbox\.www-nerd\.de$
+RewriteRule ^(.*)$ http://sandbox.www-nerd.de/_fw/$1 [L,R=301]
+
+RewriteBase /_fw/
+RewriteRule ^index.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{HTTP_HOST} ^sandbox\.www-nerd\.de$
+RewriteRule . /_fw/index.php [L]
+
+
+RewriteBase /
+RewriteRule ^index.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{HTTP_HOST} !^sandbox\.www-nerd\.de$
+RewriteRule . /index.php [L]
+
+
+
+
+</IfModule>
