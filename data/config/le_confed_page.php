@@ -19,7 +19,7 @@
 			"host"=>"localhost",
 			"db"=>"fw.www-nerd.de_1",
 			"user"=>"fw.www-nerd.de_1",
-			"pass"=>"pass",
+			"pass"=>"****",
 			"prefix"=>"pre_"
 		)
 	);
