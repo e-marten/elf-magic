@@ -7,10 +7,7 @@
 			"sandbox.www-nerd.de/_fw/"
 		),
 		"mode"=>array(
-			"modus_1"=>function(){
-				global $i;
-				return true;
-			},
+			/* "default"=>function(){	return true;	}, /* comes with new Config(); */
 			"WILDCARD_mode"=>function(){ global $active_match; if (trim($active_match," /")=="*.fw.www-n*rd.de") { return true; } },
 			"mytyp_3"=>function(){ return false; },
 			// else: default

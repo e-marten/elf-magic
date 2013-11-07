@@ -14,6 +14,12 @@ class Install {
 		$this->create_table("url");
 		$this->create_table("content");
 		$_EF->update_option("installed",time());
+		$url=new URL();
+		$url->create(array(
+			"url"=>"/",
+			"mode"=>"default",
+			"type"=>"content"
+		));
 	}
 	public function create_table($table)
 	{
@@ -47,14 +53,16 @@ class Install {
 			"url"=>"CREATE TABLE [table] (
 					`id` INT( 100 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 					`first_set` INT( 25 ) NOT NULL ,
-					`last_seen` INT( 25 ) NOT NULL ,
 					`last_modified` INT( 25 ) NOT NULL ,
+					`last_seen` INT( 25 ) NOT NULL ,
 					`url` MEDIUMTEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 					`type` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+					`type_id` VARCHAR( 44 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 					`mode` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 					`parameters` LONGTEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
 					`status` INT( 20 ) NOT NULL DEFAULT '200'
-					) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT = 'url-routing';",
+					) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT = 'url-routing';				
+			",
 			"content"=>"CREATE TABLE [table] (
 				`id` INT(22) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 				`cid` VARCHAR(44) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL, 
