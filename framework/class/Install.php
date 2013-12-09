@@ -14,12 +14,33 @@ class Install {
 		$this->create_table("url");
 		$this->create_table("content");
 		$_EF->update_option("installed",time());
+		$_EF->update_option("software", dirname(dirname(__FILE__))."/default-software/elf-cms/elf-cms.php");
 		$url=new URL();
 		$url->create(array(
 			"url"=>"/",
 			"mode"=>"default",
 			"type"=>"content"
 		));
+		$content=new Content();
+		$content->create(array(
+			"cid"=>$url->type_id,
+			"type"=>"page",
+			"status"=>"publish",
+			"title"=>"Welcome to the fairy Elf-Magic",
+			"content"=>"You can do magic<br />
+You can have anything that you desire<br />
+Magic, and you know<br />
+You're the one who can put out the fire<br />
+<br />
+You know darn well<br />
+When you cast your spell you will get your way<br />
+When you hypnotize with your eyes<br />
+A heart of stone can turn to clay<br />
+Doo, doo, doo ... <br />
+<br />
+No more content left.<br />
+An Elefant ate it all.",
+		)); 
 	}
 	public function create_table($table)
 	{
@@ -75,7 +96,7 @@ class Install {
 				`title` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL, 
 				`content` LONGTEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL, 
 				`excerpt` MEDIUMTEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL, 
-				`parent` VARCHAR(44) NOT NULL, 
+				`parent` VARCHAR(44) NOT NULL DEFAULT '0', 
 				`order` INT(6) NOT NULL DEFAULT '0', 
 				`author` INT(6) NOT NULL DEFAULT '1', 
 				`level` INT(6) NOT NULL DEFAULT '1', 

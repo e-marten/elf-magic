@@ -13,6 +13,7 @@ class Content {
 	public function Content ($s=array("cid"=>"0"))
 	{
 		global $_EF;
+		$filter="";
 		foreach ($s as $k => $v)
 		{
 			$filter.=" AND $k = :".$k." ";
@@ -59,24 +60,35 @@ class Content {
 		{
 			// cid,first_set,last_modified,last_seen,type,status,name,title,content,excerpt,parent,order,author,level,pass,mime
 			$arr=array(
+				"cid"=>md5(time().rand(1,999).microtime(true)."WHAT?"),
 				"first_set"=>time(),
 				"last_modified"=>time(),
 				"last_seen"=>time(),
-				"url"=>"/",
-				"type"=>"content",
-				"type_id"=>md5("content1"),
-				"mode"=>"default",
-				"parameters"=>  json_encode(new stdClass()),
-				"status"=>200
+				"type"=>"post",
+				"status"=>"draft",
+				"name"=>"",
+				"title"=>"Untitled ".date("d.m.Y H:i:s"),
+				"content"=>"",
+				"excerpt"=>"",
+				"parent"=>0,
+				"order"=>0,
+				"author"=>0,
+				"level"=>0,
+				"pass"=>"",
+				"mime"=>"text/html"
 			);
 			foreach ($s as $k => $v)
 			{
-				$arr[$k]=$v;
+				if (isset($arr[$k])) { $arr[$k]=$v; }
+				else
+				{
+					// ITS MAYBE A META OR SO...
+				}
 			}
-			$sql="INSERT INTO [table] ( `first_set` , `last_seen` , `last_modified` , `url` , `type` , `type_id` , `mode` , `parameters` , `status` ) ".
-					" VALUES ( :first_set , :last_seen , :last_modified , :url , :type , :type_id , :mode , :parameters , :status )";
+			$sql="INSERT INTO [table] ( `cid` , `first_set` , `last_modified` , `last_seen` , `type` , `status` , `name` , `title` , `content` , `excerpt` , `parent` , `order` , `author` , `level` , `pass` , `mime` ) ".
+					" VALUES ( :cid , :first_set , :last_modified , :last_seen , :type , :status , :name , :title , :content , :excerpt , :parent , :order , :author , :level , :pass , :mime )";
 			
-			
+			#echo $sql;
 			$sql=$_EF->DB->prepare($sql,"content");
 			$sql->execute($arr);
 			

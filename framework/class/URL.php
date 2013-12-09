@@ -27,6 +27,7 @@ class URL {
 		}
 		else {
 			$this->exists=false;
+			$this->type=404;
 		}
 	}
 	public function create($s)
@@ -52,13 +53,14 @@ class URL {
 		}
 		else
 		{
+			$this->type_id=md5("content1"); 
 			$arr=array(
 				"first_set"=>time(),
 				"last_modified"=>time(),
 				"last_seen"=>time(),
 				"url"=>"/",
 				"type"=>"content",
-				"type_id"=>md5("content1"),
+				"type_id"=>$this->type_id,
 				"mode"=>"default",
 				"parameters"=>  json_encode(new stdClass()),
 				"status"=>200
